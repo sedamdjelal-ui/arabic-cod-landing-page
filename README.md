@@ -51,11 +51,12 @@ components/
   Gallery.tsx     Product photos with thumbnails
   Features.tsx    Fragrance notes and product details
   Delivery.tsx    Ordering steps and delivery information
-  OrderForm.tsx   Client-side order form (name, phone, wilaya)
+  OrderForm.tsx   Client-side order form with price summary (sends nothing)
   Footer.tsx      Contact details and demo notice
 lib/
   product.ts      Product name, prices, gallery images and price formatting
-  wilayas.ts      List of the 58 Algerian wilayas for the form
+  wilayas.ts      The 69 Algerian wilayas (2026 division) and southern codes
+  delivery.ts     Demo delivery prices (home or desk, north or south)
 public/
   gallery/        Product photos (1200×1200 WebP)
 ```
