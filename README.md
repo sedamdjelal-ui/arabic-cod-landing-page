@@ -1,4 +1,6 @@
-# landing-page-demo
+# arabic-cod-landing-page
+
+![The landing page on desktop and phone](docs/cover.jpg)
 
 Arabic RTL landing page built with Next.js and Tailwind CSS.
 
