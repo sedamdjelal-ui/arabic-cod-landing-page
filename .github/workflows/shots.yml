@@ -1,0 +1,27 @@
+name: Screenshots
+on:
+  push:
+    branches: [tmp-screenshots]
+permissions:
+  contents: write
+jobs:
+  shots:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Take screenshots
+        run: |
+          mkdir -p shots
+          CH="google-chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars --virtual-time-budget=15000"
+          for pair in "djellalco|https://www.djellalco.com" "soukkom|https://soukkom.vercel.app" "charity|https://charity-template-xi.vercel.app"; do
+            name="${pair%%|*}"; url="${pair#*|}"
+            $CH --window-size=1440,900 --force-device-scale-factor=2 --screenshot="shots/$name-desktop.png" "$url" || true
+            $CH --window-size=390,844 --force-device-scale-factor=3 --user-agent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1" --screenshot="shots/$name-mobile.png" "$url" || true
+          done
+          ls -la shots
+      - name: Commit screenshots
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add shots
+          git commit -m "Add screenshots" && git push
