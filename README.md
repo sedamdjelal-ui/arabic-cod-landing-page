@@ -51,6 +51,8 @@ components/
   Gallery.tsx     Product photos with thumbnails
   Features.tsx    Fragrance notes and product details
   Delivery.tsx    Ordering steps and delivery information
+  Faq.tsx         Common questions (details/summary, no JavaScript)
+  StickyOrderButton.tsx  Order button pinned to the bottom on phones
   OrderForm.tsx   Client-side order form with price summary (sends nothing)
   Footer.tsx      Contact details and demo notice
 lib/

@@ -75,6 +75,7 @@ export default function Hero() {
           </ul>
 
           <a
+            id="hero-cta"
             href="#order"
             className="mt-7 block rounded-lg bg-oud px-6 py-4 text-center text-lg font-bold text-white transition-colors hover:bg-oud-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oud"
           >
