@@ -11,7 +11,7 @@ export default function DemoBanner() {
         href="https://www.djellalco.com"
         target="_blank"
         rel="noopener"
-        className="font-bold underline underline-offset-4 hover:text-gold-soft"
+        className="ms-1 inline-block font-bold underline underline-offset-4 hover:text-gold-soft"
       >
         Djellal Design Studio
       </a>
