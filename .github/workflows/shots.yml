@@ -9,19 +9,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
       - name: Take screenshots
         run: |
           mkdir -p shots
-          CH="timeout 90 google-chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars --timeout=40000 --force-prefers-reduced-motion"
-          for pair in "djellalco|https://www.djellalco.com" "charity|https://charity-template-xi.vercel.app"; do
-            name="${pair%%|*}"; url="${pair#*|}"
-            $CH --window-size=1440,4000 --force-device-scale-factor=1 --screenshot="shots/$name-desktop-tall.png" "$url" || true
-            $CH --window-size=390,4000 --force-device-scale-factor=2 --user-agent="Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1" --screenshot="shots/$name-mobile-tall.png" "$url" || true
-          done
+          npm i --no-save puppeteer
+          node shoot.mjs
           ls -la shots
       - name: Commit screenshots
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
           git add shots
-          git commit -m "Add screenshots" && git push
+          git commit -m "Add screenshots [skip ci]" && git push
