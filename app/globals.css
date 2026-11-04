@@ -16,6 +16,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* حتى لا يغطي الشريط التجريبي عنوان القسم عند الانتقال إليه */
+  scroll-padding-top: 4rem;
 }
 
 body {
