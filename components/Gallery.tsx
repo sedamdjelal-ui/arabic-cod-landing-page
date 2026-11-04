@@ -17,7 +17,10 @@ export default function Gallery() {
           src={current.src}
           alt={current.alt}
           fill
-          priority={active === 0}
+          // الصورة الأولى هي أكبر عنصر في أول الشاشة: نحمّلها فوراً وبأولوية عالية.
+          preload={active === 0}
+          loading={active === 0 ? "eager" : undefined}
+          fetchPriority={active === 0 ? "high" : undefined}
           sizes="(min-width: 768px) 50vw, 100vw"
           className="object-cover"
         />

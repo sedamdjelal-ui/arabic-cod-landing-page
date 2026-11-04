@@ -5,28 +5,36 @@ import { formatPrice, product } from "@/lib/product";
 
 // زر "اطلب الآن" ثابت أسفل شاشة الهاتف.
 // يظهر فقط بعد تجاوز زر الطلب الأول، ويختفي عند الوصول إلى النموذج.
+// نستعمل IntersectionObserver: المتصفح يخبرنا متى يدخل العنصر الشاشة أو يخرج منها،
+// دون حساب المواقع عند كل تمرير، فتبقى الصفحة خفيفة.
 export default function StickyOrderButton() {
-  const [visible, setVisible] = useState(false);
+  const [passedHero, setPassedHero] = useState(false);
+  const [reachedOrder, setReachedOrder] = useState(false);
 
   useEffect(() => {
     const heroButton = document.getElementById("hero-cta");
     const order = document.getElementById("order");
     if (!heroButton || !order) return;
 
-    function update() {
-      const passedHero = heroButton!.getBoundingClientRect().bottom < 0;
-      const beforeOrder = order!.getBoundingClientRect().top > window.innerHeight;
-      setVisible(passedHero && beforeOrder);
-    }
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        const box = entry.boundingClientRect;
+        if (entry.target === heroButton) {
+          // تجاوزنا الزر الأول عندما يخرج من أعلى الشاشة.
+          setPassedHero(!entry.isIntersecting && box.bottom < 0);
+        } else {
+          // وصلنا إلى النموذج عندما يظهر، أو عندما نكون تحته.
+          setReachedOrder(entry.isIntersecting || box.top < 0);
+        }
+      }
+    });
 
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
+    observer.observe(heroButton);
+    observer.observe(order);
+    return () => observer.disconnect();
   }, []);
+
+  const visible = passedHero && !reachedOrder;
 
   return (
     <div
