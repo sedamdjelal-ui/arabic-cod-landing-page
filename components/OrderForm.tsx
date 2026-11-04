@@ -36,14 +36,14 @@ export default function OrderForm() {
   }
 
   return (
-    <section id="order" className="px-4 py-12 sm:px-6 md:py-16">
+    <section id="order" className="bg-mist px-4 py-12 sm:px-6 md:py-16">
       <div className="mx-auto max-w-xl">
         <h2 className="text-2xl font-bold">اطلب الآن</h2>
         <p className="mt-2 text-muted">
           املأ النموذج وسنتصل بك لتأكيد الطلب. الدفع عند الاستلام.
         </p>
 
-        <div className="mt-6 rounded-lg border border-line p-5 sm:p-8">
+        <div className="mt-6 rounded-lg border border-line bg-white p-5 sm:p-8">
           {submitted ? (
             <div role="status" className="py-6 text-center">
               <p className="text-xl font-bold">

@@ -50,6 +50,7 @@ components/
   Hero.tsx        Header, gallery, price and order button
   Gallery.tsx     Product photos with thumbnails
   Features.tsx    Fragrance notes and product details
+  Delivery.tsx    Ordering steps and delivery information
   OrderForm.tsx   Client-side order form (name, phone, wilaya)
   Footer.tsx      Contact details and demo notice
 lib/
