@@ -12,7 +12,7 @@ jobs:
       - name: Take screenshots
         run: |
           mkdir -p shots
-          CH="timeout 90 google-chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars --timeout=12000"
+          CH="timeout 90 google-chrome --headless=new --no-sandbox --disable-gpu --hide-scrollbars --timeout=20000 --force-prefers-reduced-motion"
           for pair in "djellalco|https://www.djellalco.com" "soukkom|https://soukkom.vercel.app" "charity|https://charity-template-xi.vercel.app"; do
             name="${pair%%|*}"; url="${pair#*|}"
             $CH --window-size=1440,900 --force-device-scale-factor=2 --screenshot="shots/$name-desktop.png" "$url" || true
