@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
-import { Amiri, Tajawal } from "next/font/google";
+import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 
-const tajawal = Tajawal({
-  variable: "--font-tajawal",
+const plex = IBM_Plex_Sans_Arabic({
+  variable: "--font-plex",
   subsets: ["arabic", "latin"],
   weight: ["400", "500", "700"],
-});
-
-const amiri = Amiri({
-  variable: "--font-amiri",
-  subsets: ["arabic", "latin"],
-  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -50,7 +44,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="ar"
       dir="rtl"
-      className={`${tajawal.variable} ${amiri.variable} h-full antialiased`}
+      className={`${plex.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>

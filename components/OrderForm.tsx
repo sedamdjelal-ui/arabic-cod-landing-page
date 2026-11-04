@@ -8,7 +8,7 @@ import { wilayas } from "@/lib/wilayas";
 const PHONE_PATTERN = /^0[567]\d{8}$/;
 
 const fieldClass =
-  "mt-2 w-full rounded-xl border border-sand bg-white px-4 py-3 text-base text-ink outline-none transition placeholder:text-muted/60 focus:border-gold focus:ring-2 focus:ring-gold/30";
+  "mt-2 w-full rounded-lg border border-line bg-white px-4 py-3 text-base text-ink outline-none placeholder:text-muted/60 focus:border-oud focus:ring-2 focus:ring-oud/20";
 
 export default function OrderForm() {
   const [name, setName] = useState("");
@@ -36,19 +36,17 @@ export default function OrderForm() {
   }
 
   return (
-    <section id="order" className="scroll-mt-6 px-5 py-16 sm:px-8 md:py-24">
+    <section id="order" className="px-4 py-12 sm:px-6 md:py-16">
       <div className="mx-auto max-w-xl">
-        <h2 className="text-center font-display text-3xl font-bold text-forest sm:text-4xl">
-          اطلب الآن
-        </h2>
-        <p className="mt-3 text-center text-muted">
+        <h2 className="text-2xl font-bold">اطلب الآن</h2>
+        <p className="mt-2 text-muted">
           املأ النموذج وسنتصل بك لتأكيد الطلب. الدفع عند الاستلام.
         </p>
 
-        <div className="mt-10 rounded-3xl border border-sand bg-white/70 p-6 shadow-sm sm:p-8">
+        <div className="mt-6 rounded-lg border border-line p-5 sm:p-8">
           {submitted ? (
             <div role="status" className="py-6 text-center">
-              <p className="font-display text-2xl font-bold text-forest">
+              <p className="text-xl font-bold">
                 شكرًا لك يا {name.trim()}!
               </p>
               <p className="mt-3 leading-7 text-muted">
@@ -61,7 +59,7 @@ export default function OrderForm() {
               <button
                 type="button"
                 onClick={reset}
-                className="mt-6 rounded-full border border-forest/30 px-6 py-2.5 font-medium text-forest transition hover:bg-forest hover:text-cream"
+                className="mt-6 rounded-lg border border-line px-6 py-2.5 font-medium hover:border-ink"
               >
                 طلب جديد
               </button>
@@ -131,9 +129,9 @@ export default function OrderForm() {
 
               <button
                 type="submit"
-                className="w-full rounded-full bg-forest px-8 py-4 text-lg font-bold text-cream transition hover:bg-forest-deep"
+                className="w-full rounded-lg bg-oud px-6 py-4 text-lg font-bold text-white transition-colors hover:bg-oud-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oud"
               >
-                تأكيد الطلب · {formatPrice(product.price)}
+                تأكيد الطلب ({formatPrice(product.price)})
               </button>
             </form>
           )}

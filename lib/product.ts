@@ -1,6 +1,7 @@
 export const product = {
   brand: "دار مِسك",
   name: "ليالي القصبة",
+  type: "ماء عطر",
   size: "100 مل",
   price: 4900,
   oldPrice: 6500,
@@ -16,10 +17,6 @@ export const gallery = [
   {
     src: "/gallery/bottle-dropper.webp",
     alt: "قارورة زجاجية بقطّارة من مجموعة دار مِسك",
-  },
-  {
-    src: "/perfume.svg",
-    alt: "رسم توضيحي لقارورة ليالي القصبة",
   },
 ];
 

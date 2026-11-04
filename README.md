@@ -3,7 +3,8 @@
 Arabic RTL landing page built with Next.js and Tailwind CSS.
 
 It showcases a fictional Algerian perfume shop ("دار مِسك") on a single page:
-hero, three features, an offer/pricing block, an order form and a footer.
+product gallery with price and order button, fragrance notes and details,
+an order form and a footer.
 The order form is a demo: it validates input and shows a confirmation, but
 sends nothing to any server.
 
@@ -12,7 +13,7 @@ sends nothing to any server.
 - Next.js 16 (App Router) + React 19
 - TypeScript
 - Tailwind CSS v4
-- Arabic fonts (Tajawal and Amiri) loaded with `next/font/google`
+- Arabic font (IBM Plex Sans Arabic) loaded with `next/font/google`
 
 ## Requirements
 
@@ -45,16 +46,17 @@ app/
   page.tsx        The landing page, composed from the sections below
   globals.css     Tailwind import and the color/font theme tokens
 components/
-  Hero.tsx        Header, headline, product image and order button
-  Features.tsx    The three product features
-  Pricing.tsx     The launch offer and what is included
+  DemoBanner.tsx  Sticky notice that the page is a demo
+  Hero.tsx        Header, gallery, price and order button
+  Gallery.tsx     Product photos with thumbnails
+  Features.tsx    Fragrance notes and product details
   OrderForm.tsx   Client-side order form (name, phone, wilaya)
   Footer.tsx      Contact details and demo notice
 lib/
-  product.ts      Product name, prices and price formatting
+  product.ts      Product name, prices, gallery images and price formatting
   wilayas.ts      List of the 58 Algerian wilayas for the form
 public/
-  perfume.svg     Hero illustration
+  gallery/        Product photos (1200×1200 WebP)
 ```
 
 ## Customizing

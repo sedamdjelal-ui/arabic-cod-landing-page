@@ -3,15 +3,15 @@ export default function DemoBanner() {
   return (
     <div
       role="note"
-      className="sticky top-0 z-50 bg-ink px-4 py-2 text-center text-xs leading-6 text-cream sm:text-sm"
+      className="sticky top-0 z-50 bg-ink px-4 py-2 text-center text-xs leading-6 text-white sm:text-sm"
     >
-      <span className="font-bold text-gold-soft">صفحة تجريبية</span> · العلامة
-      والمنتج افتراضيان ولا تُحفظ أي بيانات · تصميم وتطوير{" "}
+      <strong>صفحة تجريبية:</strong> العلامة والمنتج افتراضيان ولا تُحفظ أي
+      بيانات. تصميم وتطوير
       <a
         href="https://www.djellalco.com"
         target="_blank"
         rel="noopener"
-        className="ms-1 inline-block font-bold underline underline-offset-4 hover:text-gold-soft"
+        className="ms-1 inline-block font-bold underline underline-offset-4"
       >
         Djellal Design Studio
       </a>

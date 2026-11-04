@@ -1,64 +1,107 @@
-import Image from "next/image";
+import Gallery from "@/components/Gallery";
 import { formatPrice, product } from "@/lib/product";
 
+const highlights = [
+  "ثبات من 8 إلى 12 ساعة على البشرة",
+  "عنبر وياسمين وخشب الصندل",
+  "يصل في علبة هدية مغلقة",
+];
+
+const reassurance = [
+  {
+    text: "توصيل إلى كل الولايات خلال 2 إلى 5 أيام",
+    icon: (
+      <path d="M3 7h11v9H3V7Zm11 3h4l3 3v3h-7v-6ZM7.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm10 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" />
+    ),
+  },
+  {
+    text: "الدفع نقداً عند الاستلام",
+    icon: <path d="M3 7h18v10H3V7Zm9 7.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />,
+  },
+  {
+    text: "تعاين الطرد قبل أن تدفع",
+    icon: <path d="m5 12 4 4L19 6" />,
+  },
+];
+
 export default function Hero() {
+  const saving = product.oldPrice - product.price;
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-sand to-cream">
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
-        <span className="font-display text-2xl font-bold text-forest">
-          {product.brand}
-        </span>
-        <a
-          href="#order"
-          className="rounded-full border border-forest/30 px-4 py-2 text-sm font-medium text-forest transition hover:bg-forest hover:text-cream"
-        >
-          اطلب الآن
-        </a>
+    <>
+      <header className="border-b border-line">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+          <span className="text-xl font-bold">{product.brand}</span>
+          <span className="text-sm text-muted">الدفع عند الاستلام</span>
+        </div>
       </header>
 
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 pb-16 pt-6 sm:px-8 md:grid-cols-2 md:pb-24 md:pt-12">
-        <div className="text-center md:text-start">
-          <p className="mb-4 inline-block rounded-full bg-gold/15 px-4 py-1.5 text-sm font-medium text-gold">
-            إصدار محدود · صُنع في الجزائر
-          </p>
-          <h1 className="font-display text-4xl font-bold leading-tight text-forest sm:text-5xl lg:text-6xl">
-            {product.name}
-            <span className="mt-2 block text-2xl font-normal text-ink sm:text-3xl">
-              عطرٌ يحكي دفء المساء في أزقّة القصبة
-            </span>
+      <section className="mx-auto grid max-w-6xl gap-8 px-4 py-6 sm:px-6 md:grid-cols-2 md:gap-12 md:py-12">
+        <Gallery />
+
+        <div>
+          <p className="text-sm text-muted">{product.brand}</p>
+          <h1 className="mt-1 text-2xl font-bold leading-snug sm:text-3xl">
+            عطر {product.name}
           </h1>
-          <p className="mx-auto mt-5 max-w-md text-lg leading-8 text-muted md:mx-0">
-            مزيج شرقي من العنبر والياسمين وخشب الصندل، يرافقك من الصباح إلى
-            آخر الليل.
+          <p className="mt-1 text-muted">
+            {product.type}، {product.size}
           </p>
 
-          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center md:justify-start">
-            <a
-              href="#order"
-              className="w-full rounded-full bg-forest px-8 py-4 text-center text-lg font-bold text-cream shadow-lg shadow-forest/20 transition hover:bg-forest-deep sm:w-auto"
-            >
-              اطلب عطرك الآن
-            </a>
-            <p className="text-muted">
-              <span className="text-xl font-bold text-ink">
-                {formatPrice(product.price)}
-              </span>{" "}
-              · الدفع عند الاستلام
-            </p>
+          <div className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <span className="text-3xl font-bold">
+              {formatPrice(product.price)}
+            </span>
+            <s className="text-lg text-muted">{formatPrice(product.oldPrice)}</s>
+            <span className="text-sm font-medium text-amber">
+              توفّر {formatPrice(saving)}
+            </span>
           </div>
-        </div>
 
-        <div className="order-first md:order-none">
-          <Image
-            src="/perfume.svg"
-            alt={`قارورة عطر ${product.name} من ${product.brand}`}
-            width={480}
-            height={560}
-            priority
-            className="mx-auto h-auto w-64 sm:w-80 md:w-full md:max-w-md"
-          />
+          <p className="mt-5 max-w-prose leading-8 text-muted">
+            عطر شرقي دافئ يبدأ بلمسة هيل خفيفة، ثم يستقر على العنبر وخشب
+            الصندل. مناسب للمساء وللمناسبات.
+          </p>
+
+          <ul className="mt-5 space-y-2">
+            {highlights.map((item) => (
+              <li key={item} className="flex gap-2">
+                <span aria-hidden="true" className="text-oud">
+                  ✓
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="#order"
+            className="mt-7 block rounded-lg bg-oud px-6 py-4 text-center text-lg font-bold text-white transition-colors hover:bg-oud-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oud"
+          >
+            اطلب الآن
+          </a>
+
+          <ul className="mt-6 space-y-3 border-t border-line pt-6 text-sm">
+            {reassurance.map((item) => (
+              <li key={item.text} className="flex items-center gap-3">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-5 w-5 shrink-0 text-muted"
+                  aria-hidden="true"
+                >
+                  {item.icon}
+                </svg>
+                {item.text}
+              </li>
+            ))}
+          </ul>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

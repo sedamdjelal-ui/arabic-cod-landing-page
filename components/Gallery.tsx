@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { gallery, product } from "@/lib/product";
+import { gallery } from "@/lib/product";
 
 // معرض الصور: صورة كبيرة وتحتها صور مصغّرة، الضغط على المصغّرة يغيّر الكبيرة.
 export default function Gallery() {
@@ -10,53 +10,44 @@ export default function Gallery() {
   const current = gallery[active];
 
   return (
-    <section className="px-5 py-16 sm:px-8 md:py-24">
-      <div className="mx-auto max-w-xl">
-        <h2 className="text-center font-display text-3xl font-bold text-forest sm:text-4xl">
-          صور المنتج
-        </h2>
+    <div>
+      <div className="relative aspect-square overflow-hidden rounded-md bg-mist">
+        <Image
+          key={current.src}
+          src={current.src}
+          alt={current.alt}
+          fill
+          priority={active === 0}
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="object-cover"
+        />
+      </div>
 
-        <div className="relative mt-10 aspect-square overflow-hidden rounded-3xl border border-sand bg-white">
-          <Image
-            key={current.src}
-            src={current.src}
-            alt={current.alt}
-            fill
-            sizes="(min-width: 640px) 576px, 100vw"
-            className="object-contain"
-          />
-        </div>
-
-        <ul className="mt-4 grid grid-cols-4 gap-3">
+      {gallery.length > 1 && (
+        <ul className="mt-3 flex gap-3">
           {gallery.map((image, index) => (
-            <li key={image.src}>
+            <li key={image.src} className="w-20">
               <button
                 type="button"
                 onClick={() => setActive(index)}
                 aria-label={`عرض الصورة ${index + 1} من ${gallery.length}`}
                 aria-current={index === active ? "true" : undefined}
-                className={`relative block aspect-square w-full overflow-hidden rounded-xl border-2 bg-white transition ${
-                  index === active
-                    ? "border-gold"
-                    : "border-transparent opacity-70 hover:opacity-100"
+                className={`relative block aspect-square w-full overflow-hidden rounded-md border-2 bg-mist focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oud ${
+                  index === active ? "border-ink" : "border-transparent"
                 }`}
               >
                 <Image
                   src={image.src}
                   alt=""
                   fill
-                  sizes="120px"
-                  className="object-contain"
+                  sizes="80px"
+                  className="object-cover"
                 />
               </button>
             </li>
           ))}
         </ul>
-
-        <p className="mt-4 text-center text-sm text-muted">
-          {product.name} · {product.size}
-        </p>
-      </div>
-    </section>
+      )}
+    </div>
   );
 }
